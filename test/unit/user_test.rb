@@ -23,4 +23,13 @@ class UserTest < ActiveSupport::TestCase
 		user.update_attributes(:password_digest => "djhackandslashaslkdfjdajlsk")
 	}
 	end
+
+	test "cannot have two users with the same email" do 
+		user = FactoryGirl.create(:user, :email => "test@gmail.com")
+		second_user = FactoryGirl.build(:user, :email => "test@gmail.com")
+		refute second_user.save
+
+		assert second_user.new_record?
+		assert_equal ["has already been taken"], second_user.errors[:email]
+	end
 end
