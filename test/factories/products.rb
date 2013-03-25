@@ -5,4 +5,9 @@ FactoryGirl.define do
 		price_in_cents 5500
 	end
 
+	factory :cheap_product, :class => Product do
+		name "Book"
+	end
+
+
 end
