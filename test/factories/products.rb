@@ -7,6 +7,8 @@ FactoryGirl.define do
 
 	factory :cheap_product, :class => Product do
 		name "Book"
+		description "Has pictures"
+		price_in_cents 99
 	end
 
 
