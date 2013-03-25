@@ -23,12 +23,10 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
 
-    respond_to do |format|
-      if @product.save
-        redirect_to @product, notice: 'Product was successfully created.'
-      else
-        render action: "new"
-      end
+    if @product.save
+      redirect_to @product, notice: 'Product was successfully created.'
+    else
+      render action: "new"
     end
   end
 
@@ -36,12 +34,10 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
 
-    respond_to do |format|
-      if @product.update_attributes(params[:product])
-        redirect_to @product, notice: 'Product was successfully updated.'
-      else
-        render action: "edit"
-      end
+    if @product.update_attributes(params[:product])
+      redirect_to @product, notice: 'Product was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
@@ -50,8 +46,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
 
-    respond_to do |format|
-      redirect_to products_url
-    end
+    redirect_to products_url
   end
 end
